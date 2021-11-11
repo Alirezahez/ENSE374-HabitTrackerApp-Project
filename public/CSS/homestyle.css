@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+* {
+    
+    font-family: 'Poppins', 'sans-serif';
+}
+
+/* Bootstrap icons */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+
+h1 {
+    text-align: center;
+    margin: 8px 0px;
+}
+
+.listBorder {
+    background-color: #C1C8E4;
+    border-radius: 5px;
+    margin: 15px 0px;
+}
+
+.logIn {
+    margin: 15px 0px; 
+}
+
+.padding {
+    padding: 10px;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+.center {
+    text-align: center;
+}
+
+#logout {
+    margin: 0; 
+    padding: 10px 0px;
+}
+
+.boxShadowMain {
+    box-shadow: 0 0 14px #8860d0;
+}
+
+.boxShadowLogin {
+    box-shadow: 0 0 20px #5680E9;
+}
+
+
+
+
+/*   -----------------------    */
+
+nav {
+    background-color: #5680E9;
+}
+
+body{
+    background-color: #84CEEB;
+}
+
+.card {
+    padding: 20px;
+}
+.vertical-center {
+
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin-bottom: 18px;
+}
+input[type="file"] {
+    display: none;
+}
+
+.primaryBtn {
+    background-color: #5680E9; 
+    color: white;
+}
+.addHabitContainer {
+    display: flex; 
+    justify-content: flex-end;
+}
+
+/* style for the 'add a new habit' h4 tage on the dashboard */
+.createText {
+    color: #8860d0;
+    font-weight: bold;
+    padding-top: 5px;
+    margin-right: 8px;
+}
+.click:hover {
+    cursor: pointer;
+}
+
+

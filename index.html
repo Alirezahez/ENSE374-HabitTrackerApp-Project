@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="CSS/homestyle.css" />
+    <title>Kaizen Login</title>
+  </head>
+  <body>
+
+    <div class="row">
+        <div class="card boxShadowLogin vertical-center col-10 offset-1 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+            <h1>Log In</h1>
+            <form
+                action="/login"
+                method="post"
+                id="LoginForm"
+            >
+              <label for="username" class="form-label">Username</label>
+              <input
+                placeholder="user123"
+                class="form-control"
+                type="text"
+                name="username"
+                id="username"
+              />
+              <br />
+              <label for="password" class="col-sm-2 col-form-label">Password</label>
+              <input type="password" class="form-control" id="password" name="password">
+              <br />
+              <div class="center">
+              <input type="submit" class="primaryBtn btn mb-3" value="Sign in" />
+              </div>
+              <div class="center">
+                <a href="./HTML/register.html">Don't have an account? Register</a>
+              </div>
+            </form>
+        </div>
+    </div>
+
+    
+
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
+<!---->

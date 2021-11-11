@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../CSS/homestyle.css" />
+    <title>Kaizen Register</title>
+
+  </head>
+  <body>
+    <div class="row">
+      <div
+        class="
+          card
+          boxShadowLogin
+          vertical-center
+          col-10
+          offset-1
+          col-md-6
+          offset-md-3
+          col-lg-4 
+          offset-lg-4
+        "
+      >
+        <h1>Register</h1>
+        <form action="../register" method="post" id="RegisterForm">
+          <label for="username" class="form-label">Username</label>
+          <input
+            placeholder="example123"
+            class="form-control"
+            type="text"
+            name="username"
+            id="username"
+          />
+          <br />
+
+          <label for="file-upload" class="custom-file-upload">
+            Upload a Profile Picture
+          </label>
+          <input id="file-upload" type="file" name="avatar"/>
+
+          <br />
+          <label for="inputPassword" class="col-form-label"
+            >Password</label
+          >
+          <input type="password" class="form-control" id="inputPassword" name="password"/>
+          <br />
+          <label for="confirmPassword" class="col-form-label"
+            >Confirm Password</label
+          >
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"/>
+
+          <br />
+          <div class="center">
+            <input type="submit" class="btn primaryBtn mb-3" value="Register" />
+          </div>
+          <div class="center">
+            <a href="../">Already have an account? login</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
