@@ -35,7 +35,8 @@
                   <input type="text" name="habitCatagory" placeholder="e.g health , relationship , routine" required/>
                 </div> 
               </div>
-              <div><select>
+              <div>
+                <select>
                 <option value="">x1</option>
                 <option value="1">x2</option>
                 <option value="2">x3</option>
@@ -43,8 +44,29 @@
                 <option value="4">x5</option>
                 <option value="5">x6</option>
                 <option value="5">x7</option>
-              </select> <P>Per week</P>
-            </div>
+                 </select> <P>Per week</P>
+              
+               </div>
+               <!--
+               <div class="nativeDatePicker">
+                <label for="bday">Start date</label>
+                <input type="date" id="bday" name="bday">
+                <span class="validity"></span>
+               </div>
+               <div class="nativeDatePicker">
+                <label for="bday">End date</label>
+                <input type="date" id="bday" name="bday">
+                <span class="validity"></span>
+               </div>
+              -->
+            <br>
+         
+            
+               <p>Start date</p>
+                <input type="date" name="start" value="Today"/><br>
+                <p>End date</p>
+                 <input type="date" name="end" data-value="7" value="After one week"/>
+        
             <br>
             <br>
             <br>
@@ -71,7 +93,8 @@
             </form>
           </div>
         
-      
+         
+         
 
 </body>
 </html>
