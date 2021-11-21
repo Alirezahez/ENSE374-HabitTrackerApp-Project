@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,11 +13,65 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../CSS/homestyle.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="../CSS/createhabit.css">
     <title>Kaizen Create Habit</title>
   </head>
   <body>
-      <h1>
-          Create Page
-      </h1>
+          <div class="testbox">
+            <form action="/">
+              <div class="banner">
+                <h1>Create new habit</h1>
+              </div>
+             
+              <div class="item">
+                <p>I want to<span class="required">*</span></p>
+                <div class="name-item">
+                  <input type="text" name="habitName" placeholder="Add a new habit" required/>
+
+                </div>
+                <div class="item"><P>Catagory</P>
+                  <input type="text" name="habitCatagory" placeholder="e.g health , relationship , routine" required/>
+                </div> 
+              </div>
+              <div><select>
+                <option value="">x1</option>
+                <option value="1">x2</option>
+                <option value="2">x3</option>
+                <option value="3">x4</option>
+                <option value="4">x5</option>
+                <option value="5">x6</option>
+                <option value="5">x7</option>
+              </select> <P>Per week</P>
+            </div>
+            <br>
+            <br>
+            <br>
+             <div>
+               
+                <div class="city-item">
+                  <div class="question">
+                    <p>Difficulty<span class="required">*</span></p>
+                    <div class="question-answer">
+                      <label><input type="radio" value="none" name="difficulty" checkedrequired/> <span>Low</span></label>
+                      <label><input type="radio" value="none" name="difficulty" required/> <span>Medium</span></label>
+                      <label><input type="radio" value="none" name="difficulty" required/> <span>High</span></label>
+                    </div>
+                  </div>
+                  <br> <br>
+                  <p>Why am I making this habit?<span class="required">*</span></p>
+                  <input type="text" name="name" placeholder="Describ here!" required/>
+                </div>
+              </div>
+
+              <div class="btn-block">
+                <button type="submit" href="/">ADD HABIT</button>
+              </div>
+            </form>
+          </div>
+        
+      
+
 </body>
 </html>
