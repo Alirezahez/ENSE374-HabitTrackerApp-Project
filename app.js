@@ -63,14 +63,15 @@ const User = mongoose.model ( "User", userSchema );
 // ]
 
 const habitSchema = new mongoose.Schema ({
-    id: Number,
+    _id: Number,
     title: String,
+    user: String,
     frequency: Number,
     progress: Number,
-    status: String,
+    status: Number,
     category: String,
-    startDate: String,
-    endDate: String
+    startDate: Date,
+    endDate: Date
 });
 const habit = mongoose.model ( "habit", habitSchema );
 // var Habit = [
@@ -119,7 +120,7 @@ app.get("/dashboard", async(req, res) => {
         try {
             console.log( "was authorized and found:" );
             const Hresults = await habit.find();
-            console.log( Hresults );
+            console.log("Habits:\n", Hresults );
             res.render( "index", {user: req.user.username, Hresults : Hresults });
         } catch ( error ) {
             console.log( error );
@@ -186,16 +187,32 @@ app.post("/register", (req, res) => {
             });
         }
     });
-    //QUESTION - are we using an avatar?
-
-    // console.log(req.body);
-    // //to do: check db if username is taken if not then, then send the created user to the database then back to login
-    // if (req.body.username && req.body.avatar && req.body.password && req.body.confirmPassword) {
-    //     //to do: add to database
-    //     res.redirect("/");
-    // }
    
 }) 
+
+var i=0;
+ app.post("/createHabit", async(req, res)=>{
+    console.log(req.body)
+    console.log("added a task: ", req.body.habitName)
+        
+ const addHabit = new habit ({
+    _id: i,
+    title: req.body.habitName,
+    user: req.user.username,
+    frequency: req.body.frequency,
+    progress: 0,
+    status: null,
+    category: req.body.habitCatagory,
+    startDate: req.body.start,
+    endDate: req.body.end
+    })
+
+     addHabit.save().then( ()=>console.log("habit added"));
+     //console.log(addHabit);
+
+     i++;
+     res.redirect("/dashboard")
+ })
 
 app.get("/logout", (req, res) => {
     console.log( "A user is logging out" );
