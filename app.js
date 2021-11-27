@@ -185,3 +185,31 @@ app.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/");
  });
+
+
+ app.post("/updateHabit", async(req, res)=>{
+
+    let id = req.body.id;
+    let frequency = req.body.frequency;
+    let progress = req.body.progress; 
+    progress++;
+    if (progress > frequency) {
+      progress = frequency;
+    }
+    console.log(req.body)
+    try {
+        await habit.updateOne({ _id: id }, 
+        { $set: { progress: progress,
+                frequency: frequency} });
+        res.redirect("/dashboard");
+    } catch (error) {
+        console.log(error);
+    }
+
+ })
+ 
+ 
+ app.get('/calendarHabits', async(req, res) => {
+    const habitData= await habit.find();
+    res.send({ data: habitData })
+});

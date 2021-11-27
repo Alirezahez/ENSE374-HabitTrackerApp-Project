@@ -47,11 +47,6 @@ h1 {
     box-shadow: 0 0 20px #5680E9;
 }
 
-
-
-
-/*   -----------------------    */
-
 nav {
     background-color: #5680E9;
 }
@@ -70,7 +65,7 @@ body{
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
   }
-
+/*
   .custom-file-upload {
     border: 1px solid #ccc;
     display: inline-block;
@@ -80,12 +75,18 @@ body{
 }
 input[type="file"] {
     display: none;
-}
+} */
 
 .primaryBtn {
     background-color: #5680E9; 
     color: white;
 }
+
+.secondaryBtn {
+    background-color: #8860d0; 
+    color: white;
+}
+
 .addHabitContainer {
     display: flex; 
     justify-content: flex-end;
@@ -93,13 +94,22 @@ input[type="file"] {
 
 /* style for the 'add a new habit' h4 tage on the dashboard */
 .createText {
-    color: #8860d0;
+    color: white;
     font-weight: bold;
+    font-size: 24px;
     padding-top: 5px;
+    padding: 8px 10px;
     margin-right: 8px;
+    background-color: #8860d0;
+    border-radius: 8px;
+    border: none;
 }
 .click:hover {
     cursor: pointer;
 }
 
+.fc-button {
+    background-color: #5680E9 !important;
+    border: none !important;
+}
 

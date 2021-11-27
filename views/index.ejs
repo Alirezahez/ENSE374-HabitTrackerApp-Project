@@ -25,219 +25,267 @@
       integrity="sha256-zsz1FbyNCtIE2gIB+IyWV7GbCLyKJDTBRz0qQaBSLxM="
       crossorigin="anonymous"
     />
-  
   </head>
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img
-            src="/docs/5.0/assets/brand/bootstrap-logo.svg"
-            alt=""
-            width="30"
-            height="24"
-            class="d-inline-block align-text-top"
-          />
-          Kaizen
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="#"
-              >Dashboard</a
-            >
-            <a class="nav-link" href="#">Analytics</a>
-            <a class="nav-link" href="#">My Profile</a>
-            <!-- <a class="nav-link" onclick="location.href='../'" id="logout">Logout</a> -->
+        <ul class="nav navbar-nav navbar-left">
+          <li>
+            <h3 class="navbar-brand">
+              <img
+                src="/docs/5.0/assets/brand/bootstrap-logo.svg"
+                alt=""
+                width="30"
+                height="24"
+                class="d-inline-block align-text-top"
+              />
+              Kaizen
+            </h3>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li style="margin-right: 40px; padding-top: 4px">
+            <h4 class="navbar-text" style="color: white"><%= user %></h4>
+          </li>
+          <li style="margin-right: 10px">
             <form action="/logout" method="get" class="nav-link">
-              <input type="submit" value="Logout" class="btn btn-outline-secondary"/>
-            </form> 
-          </div>
-        </div> 
+              <input
+                type="submit"
+                value="Logout"
+                class="btn btn-outline-light"
+              />
+            </form>
+          </li>
+        </ul>
       </div>
     </nav>
   </header>
   <body>
     <div class="row" style="margin: 5% 13%">
-      <div class="addHabitContainer">  
-      <form action="/createHabit" method="get">
-          <input type="submit" class="createText click" value="Add a New Habit">
-        <!-- <h4>
-          
-        </h4> -->
-        <!-- onclick="location.href='./createHabit.html'" -->
-
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
-          fill="#8860D0"
-          class="bi bi-plus-circle-fill click"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"
+      <div class="addHabitContainer">
+        <form action="/createHabit" method="get">
+          <input
+            type="submit"
+            class="createText click"
+            value="Add a New Habit +"
           />
-        </svg> </form>
+        </form>
       </div>
     </div>
 
     <div class="row" style="margin: 20px 10px">
-      <div class="col-10 offset-1 col-md-4 offset-md-0">
-        <form
-          action=""
-          method="post"
-          enctype="text/plain"
-          class="listBorder padding boxShadowMain"
-        >
-          <h2 style="color: #5680e9; font-weight: bold;padding: 12px 22px;">Today's Habits</h2>
-          <div class="row input-group mb-3" onclick="increaseProgress(1)" id="1">
-            <input
-              type="text"
-              class="form-control col-8 offset-1"
-              disabled
-              value="Eat 5 meals a day"
-              style="border: none"
-            />
-            <div class="progress col-4" style="height: 38px; padding: 0">
-              <div
-                class="progress-bar progress-bar-striped"
-                role="progressbar"
-                style="width: 40%; background-color: #5680e9;"
-                aria-valuenow="40"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-          </div>
+      <div class="col-10 offset-1 col-md-6 offset-md-0">
+        <div class="row">
+          <div class="col-10 offset-1">
+            <div class="card listBorder padding boxShadowMain">
+              <div class="card-body">
+                <h2
+                  style="color: #5680e9; font-weight: bold; padding: 12px 22px"
+                >
+                  Today's Habits
+                </h2>
+                <!--NOTE: THIS SHOULD ONLY ITERATE OVER DAILIES-->
 
-          <div class="row input-group mb-3" onclick="increaseProgress(2)" id="2">
-            <input
-              type="text"
-              class="form-control col-8 offset-1"
-              disabled
-              value="Workout"
-              style="border: none"
-            />
-            <div class="progress col-4" style="height: 38px; padding: 0">
-              <div
-                class="progress-bar progress-bar-striped"
-                role="progressbar"
-                style="width: 100%; background-color: #5680e9;"
-                aria-valuenow="100"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-          </div>
+                <% 
+                Hresults.forEach(habit => { 
+                  if (habit.period === "Daily") {
+                    let percentage = Math.round((habit.progress / habit.frequency) * 100);
+                    console.log(habit._id); 
+                    var form1 = "updateDaily" + habit._id;
+                    var redirect1 = "return document.forms.updateDaily" + habit._id
+                    + ".submit();"; %>
+                <form action="/updateHabit" method="POST" name="<%= form1 %>">
+                  <div
+                    class="row input-group mb-3"
+                    onclick="return document.forms.updateDaily<%= habit._id %>.submit();"
+                  >
+                    <input
+                      type="text"
+                      class="form-control col-8 offset-1"
+                      disabled
+                      value="<%= habit.title %>"
+                      style="border: none"
+                      name="title"
+                    />
 
-          <div class="row input-group mb-3" onclick="increaseProgress(3)" id="3">
-            <input
-              type="text"
-              class="form-control col-8 offset-1"
-              disabled
-              value="Another daily goal"
-              style="border: none"
-            />
-            <div class="progress col-4" style="height: 38px; padding: 0">
-              <div
-                class="progress-bar progress-bar-striped"
-                role="progressbar"
-                style="width: 60%; background-color: #5680e9;"
-                aria-valuenow="60"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
+                    <input type="hidden" name="id" value="<%= habit._id %>" />
+                    <input
+                      type="hidden"
+                      name="progress"
+                      value="<%= habit.progress %>"
+                    />
+                    <input
+                      type="hidden"
+                      name="frequency"
+                      value="<%= habit.frequency %>"
+                    />
+                    <div
+                      class="progress col-4"
+                      style="height: 38px; padding: 0"
+                    >
+                      <!-- NOTE: The error below is only fixed when '' are put around the value but that causes it to be a string not a number so leave it-->
+                      <div
+                        class="progress-bar progress-bar-striped"
+                        role="progressbar"
+                        style="
+                          background-color: #5680e9;
+                          width: <%= percentage %>%;"
+                        aria-valuenow="<%= habit.progress %>"
+                        aria-valuemin="0"
+                        aria-valuemax="<%= habit.frequency %>"
+                      ></div>
+                    </div>
+                  </div>
+                </form>
+                <% }
+              }) %>
+              </div>
             </div>
           </div>
-        </form>
+        </div>
+        <div class="row">
+          <!--Weekly habits-->
+          <div class="col-10 offset-1">
+            <div class="card listBorder padding boxShadowMain">
+              <div class="card-body">
+                <h2
+                  style="color: #5680e9; font-weight: bold; padding: 12px 22px"
+                >
+                  Weekly Habits
+                </h2>
+                <!--NOTE: THIS SHOULD ONLY ITERATE OVER Weeklys-->
+                <% Hresults.forEach(habit => { 
+                  if (habit.period === "Weekly") {
+                    let percentage = Math.round((habit.progress / habit.frequency) * 100); 
+                    var form2 = "updateWeekly" + habit._id;
+                    var redirect2 = "return document.forms.updateWeekly" + habit._id
+                    + ".submit();"; %>
+                <form
+                  action="/updateHabit"
+                  method="POST"
+                  name="<%= form2 %>"
+                  style="padding: 0; margin: 0"
+                >
+                  <div
+                    class="row input-group mb-3"
+                    name="submitDiv"
+                    onclick="return document.forms.updateWeekly<%= habit._id %>.submit();"
+                  >
+                    <input type="hidden" name="id" value="<%= habit._id %>" />
+                    <input
+                      type="hidden"
+                      name="progress"
+                      value="<%= habit.progress %>"
+                    />
+                    <input
+                      type="hidden"
+                      name="frequency"
+                      value="<%= habit.frequency %>"
+                    />
+                    <input
+                      type="text"
+                      class="form-control col-8 offset-1"
+                      disabled
+                      value="<%= habit.title %>"
+                      style="border: none"
+                    />
+                    <div
+                      class="progress col-4"
+                      style="height: 38px; padding: 0"
+                    >
+                      <!-- NOTE: The error below is only fixed when '' are put around the value but that causes it to be a string not a number so leave it-->
+                      <div
+                        class="progress-bar progress-bar-striped"
+                        role="progressbar"
+                        style="
+                          background-color: #5680e9;
+                          width: <%= percentage %>%;
+                        "
+                        aria-valuenow="<%= habit.progress %>"
+                        aria-valuemin="0"
+                        aria-valuemax="<%= habit.frequency %>"
+                      ></div>
+                    </div>
+                  </div>
+                </form>
+                <% }
+              }) %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Monthly habits-->
+        <div class="col-10 offset-1">
+          <div class="card listBorder padding boxShadowMain">
+            <div class="card-body">
+              <h2 style="color: #5680e9; font-weight: bold; padding: 12px 22px">
+                Monthly Habits
+              </h2>
+              <!--NOTE: THIS SHOULD ONLY ITERATE OVER Monthlys-->
+              <% Hresults.forEach(habit => { 
+                if (habit.period === "Monthly") {
+                  let percentage = Math.round((habit.progress / habit.frequency) * 100); 
+                  var form3 = "updateMonthly" + habit._id;
+                    var redirect3 = "return document.forms.updateMonthly" + habit._id
+                    + ".submit();";
+                    %>
+              <form
+                action="/updateHabit"
+                method="POST"
+                name="<%= form3 %>"
+                style="padding: 0; margin: 0"
+              >
+                <div
+                  class="row input-group mb-3"
+                  name="submitDiv"
+                  onclick="return document.forms.updateMonthly<%= habit._id %>.submit();"
+                >
+                  <input type="hidden" name="id" value="<%= habit._id %>" />
+                  <input
+                    type="hidden"
+                    name="progress"
+                    value="<%= habit.progress %>"
+                  />
+                  <input
+                    type="hidden"
+                    name="frequency"
+                    value="<%= habit.frequency %>"
+                  />
+                  <input
+                    type="text"
+                    class="form-control col-8 offset-1"
+                    disabled
+                    value="<%= habit.title %>"
+                    style="border: none"
+                  />
+                  <div class="progress col-4" style="height: 38px; padding: 0">
+                    <!-- NOTE: The error below is only fixed when '' are put around the value but that causes it to be a string not a number so leave it-->
+                    <div
+                      class="progress-bar progress-bar-striped"
+                      role="progressbar"
+                      style="
+                        background-color: #5680e9;
+                        width: <%= percentage %>%;
+                      "
+                      aria-valuenow="<%= habit.progress %>"
+                      aria-valuemin="0"
+                      aria-valuemax="<%= habit.frequency %>"
+                    ></div>
+                  </div>
+                </div>
+              </form>
+              <% }
+            }) %>
+            </div>
+          </div>
+        </div>
       </div>
-
-
-      <!--Weekly habits-->
-      <div class="col-10 offset-1 col-md-4 offset-md-0">
-        <form
-          action=""
-          method="post"
-          enctype="text/plain"
-          class="listBorder padding boxShadowMain"
-        >
-          <h2 style="color: #5680e9; font-weight: bold;padding: 12px 22px;">Weekly Habits</h2>
-          <div class="row input-group mb-3" onclick="increaseProgress(4)" id="4">
-            <input
-              type="text"
-              class="form-control col-8 offset-1"
-              disabled
-              value="Eat 5 meals a day"
-              style="border: none"
-            />
-            <div class="progress col-4" style="height: 38px; padding: 0">
-              <div
-                class="progress-bar progress-bar-striped"
-                role="progressbar"
-                style="width: 40%; background-color: #5680e9;"
-                aria-valuenow="40"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-          </div>
-
-          <div class="row input-group mb-3" onclick="increaseProgress(5)" id="5">
-            <input
-              type="text"
-              class="form-control col-8 offset-1"
-              disabled
-              value="Workout"
-              style="border: none"
-            />
-            <div class="progress col-4" style="height: 38px; padding: 0">
-              <div
-                class="progress-bar progress-bar-striped"
-                role="progressbar"
-                style="width: 100%; background-color: #5680e9;"
-                aria-valuenow="100"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-          </div>
-
-          <div class="row input-group mb-3" onclick="increaseProgress(6)" id="6">
-            <input
-              type="text"
-              class="form-control col-8 offset-1"
-              disabled
-              value="Another daily goal"
-              style="border: none"
-            />
-            <div class="progress col-4" style="height: 38px; padding: 0">
-              <div
-                class="progress-bar progress-bar-striped"
-                role="progressbar"
-                style="width: 60%; background-color: #5680e9;"
-                aria-valuenow="60"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-          </div>
-        </form>
-      </div>
-
-      <div class="col-10 offset-1 col-md-4 offset-md-0">
+      <div class="col-10 offset-1 col-md-6 offset-md-0">
         <div class="card boxShadowMain">
-          <div id="calendar"></div>
+          <div id="calendar">
+          
+          </div>
         </div>
       </div>
     </div>
@@ -248,7 +296,12 @@
       integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
       crossorigin="anonymous"
     ></script>
-    <script type="text/javascript" src="//d1l4stvdmqmdzl.cloudfront.net/3.9.6/mongoose.js"></script>
-    <script type="text/javascript" src="../JavaScript/dashboard.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../JavaScript/dashboard.js"
+      charset="utf-8"
+    ></script>
+ 
   </body>
 </html>
