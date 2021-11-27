@@ -1,3 +1,5 @@
+
+
 //for the calandar creation. More code will be needed for manipulation (brandon H)
 document.addEventListener("DOMContentLoaded", function () {
     var calendarEl = document.getElementById("calendar");
@@ -9,7 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //temporary function to increase habit progress bars by a static 20%
 //will need to change this once real data is being used
-function increaseProgress(id) {
+function increaseProgress(id){
+  //const Hresults = habit.find();
+  //alert("in js", Hresults);
     console.log('increase' + id);
     let habitTarget = document.getElementById(id);
     let progressBar = habitTarget.lastElementChild.firstElementChild;
