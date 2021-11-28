@@ -31,6 +31,18 @@
         "
       >
         <h1>Register</h1>
+        
+        <% if(typeof alert != 'undefined') { %>
+          <% alert.forEach(function(error) { %>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <%= error.msg %>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+          <% }) %>
+      <% } %>
+
         <form action="/register" method="post" id="RegisterForm">
           <label for="username" class="form-label">Username</label>
           <input

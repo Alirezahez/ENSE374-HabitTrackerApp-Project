@@ -1,7 +1,8 @@
 const fs = require("fs");
 
 const express = require ( "express" );
-
+const bodyParser = require('body-parser')
+const { check, validationResult } = require('express-validator')
 // this is a canonical alias to make your life easier, like jQuery to $.
 const app = express(); 
 
@@ -40,7 +41,7 @@ mongoose.connect( "mongodb://localhost:27017/project",
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true}));
-
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
 // create a mongoose schema for a user
 const userSchema = new mongoose.Schema ({
     username:   String,
@@ -120,6 +121,7 @@ app.get("/createHabit", (req, res) => {
 
 app.post( "/login", ( req, res ) => {
     console.log( "User " + req.body.username + " is attempting to log in" );
+    
     const user = new User ({
         username: req.body.username,
         password: req.body.password
@@ -137,7 +139,30 @@ app.post( "/login", ( req, res ) => {
     });
 });
 
-app.post("/register", (req, res) => {
+app.post("/register", urlencodedParser, [
+    check('username', "Username can't be empty")
+        .exists()
+        .isLength({ min: 1 }),
+    check('password', "password can't be empty").exists().isLength({ min: 1 }),
+    check('confirmPassword').custom((value, { req }) => {
+        if (value !== req.body.password) {
+              throw new Error('Password Confirmation does not match password');
+              //return false?
+         }
+         return true;
+    })
+], (req, res) => {
+    console.log(req.body);
+    const errors = validationResult(req)
+    if(!errors.isEmpty()) {
+        // return res.status(422).jsonp(errors.array())
+        const alert = errors.array()
+        res.render('register', {
+            alert
+        })
+    }
+    else {
+        console.log('in');
     console.log( "User " + req.body.username + " is attempting to register" );
     User.register({ username : req.body.username }, 
                     req.body.password, 
@@ -151,6 +176,7 @@ app.post("/register", (req, res) => {
             });
         }
     });
+}
    
 }) 
 
