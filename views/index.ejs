@@ -31,16 +31,17 @@
       <div class="container-fluid">
         <ul class="nav navbar-nav navbar-left">
           <li>
-            <h3 class="navbar-brand">
+          
+              <!--
               <img
                 src="/docs/5.0/assets/brand/bootstrap-logo.svg"
                 alt=""
                 width="30"
                 height="24"
                 class="d-inline-block align-text-top"
-              />
-              Kaizen
-            </h3>
+              /> -->
+              <span style="font-weight: bold; font-size: 24px; padding-left: 15px;" class="navbar-brand mb-0 h1">KAIZEN</span>
+         
           </li>
         </ul>
 
@@ -172,6 +173,14 @@
                     name="submitDiv"
                     onclick="return document.forms.updateWeekly<%= habit._id %>.submit();"
                   >
+                    
+                    <input
+                      type="text"
+                      class="form-control col-8 offset-1"
+                      disabled
+                      value="<%= habit.title %>"
+                      style="border: none"
+                    />
                     <input type="hidden" name="id" value="<%= habit._id %>" />
                     <input
                       type="hidden"
@@ -182,13 +191,6 @@
                       type="hidden"
                       name="frequency"
                       value="<%= habit.frequency %>"
-                    />
-                    <input
-                      type="text"
-                      class="form-control col-8 offset-1"
-                      disabled
-                      value="<%= habit.title %>"
-                      style="border: none"
                     />
                     <div
                       class="progress col-4"
@@ -241,6 +243,14 @@
                   name="submitDiv"
                   onclick="return document.forms.updateMonthly<%= habit._id %>.submit();"
                 >
+                  
+                  <input
+                    type="text"
+                    class="form-control col-8 offset-1"
+                    disabled
+                    value="<%= habit.title %>"
+                    style="border: none"
+                  />
                   <input type="hidden" name="id" value="<%= habit._id %>" />
                   <input
                     type="hidden"
@@ -251,13 +261,6 @@
                     type="hidden"
                     name="frequency"
                     value="<%= habit.frequency %>"
-                  />
-                  <input
-                    type="text"
-                    class="form-control col-8 offset-1"
-                    disabled
-                    value="<%= habit.title %>"
-                    style="border: none"
                   />
                   <div class="progress col-4" style="height: 38px; padding: 0">
                     <!-- NOTE: The error below is only fixed when '' are put around the value but that causes it to be a string not a number so leave it-->

@@ -22,44 +22,59 @@
 
     <form action="/createHabit" method="POST">
       <div class="banner">
-        <h1>Create new habit</h1>
+        <h1>Create a Habit</h1>
       </div>
-      <div class="row">
+      <div class="row" style="padding: 30px;">
         <div class="col-md-6 col-12">
           <div class="item">
-            <label>I want to<span class="required"></span></label>
+            <label>I want to</label>
             <div class="name-item">
-              <input type="text" name="habitName" placeholder="Add a new habit" required />
+              <input type="text" name="habitName" placeholder="e.g add a new habit, brush my teeth, exercise" required />
 
             </div>
             <div class="item">
-              <P>Category</P>
+              <label>Category</label>
+              <div>
               <input type="text" name="habitCatagory" placeholder="e.g health , relationship , routine" required />
+              </div>
             </div>
           </div>
           <div>
-            <select name="period">
+            <label style="margin-right: 5px; margin-top: 15px !important;">Time period: </label>
+        
+            <select name="period" style="width: auto !important; background-color: white;">
               <option value="Daily">Daily</option>
               <option value="Weekly">Weekly</option>
               <option value="Monthly">Monthly</option>
             </select>
+     
+            
           </div>
           <div>
             <label>Frequency: </label>
+            <div>
             <input type="text" name="frequency">
+            </div>
           </div>
           <br>
           <label>Start date</label>
+          <div>
           <input type="date" name="start" value="Today" /><br>
+          </div>
+          <br/>
           <label>End date</label>
+          <div>
           <input type="date" name="end" data-value="7" value="After one week" />
+          </div>
         </div>
 
 
         <div class="col-md-6 col-12">
 
           <label>Why am I making this habit?</label>
-          <input type="text" name="reason" placeholder="Describe here!" required />
+          <div style="width: auto !important">
+          <input  type="text" name="reason" placeholder="Describe your habit/goal!" required />
+          </div>
           <br>
           <div class="city-item">
             <div class="question">
@@ -80,7 +95,7 @@
       </div>
 
       <div class="btn-block">
-        <input type="submit" value="ADD HABIT" />
+        <input class="btn primaryBtn mb-3" type="submit" value="ADD HABIT" />
       </div>
     </form>
   </div>
