@@ -53,7 +53,6 @@ const User = mongoose.model ( "User", userSchema );
 
 
 const habitSchema = new mongoose.Schema ({
-    _id: Number,
     title: String,
     user: String,
     period: String,
@@ -62,6 +61,7 @@ const habitSchema = new mongoose.Schema ({
     status: Number,
     category: String,
     startDate: Date,
+    nextDate: Date,
     endDate: Date,
     description: String
 });
@@ -94,10 +94,48 @@ app.get("/dashboard", async(req, res) => {
     if ( req.isAuthenticated() ){
         try {
             console.log(req.user.username, "was authorized and found:" );
-            const Hresults = await habit.find();
-            console.log("Habits:\n", Hresults );
-            const testResults = await habit.find({user: req.user.username});
-            console.log("user specific:\n", testResults);
+            const Allresults = await habit.find();
+            console.log("Habits:\n", Allresults );
+
+            const Hresults = await habit.find({user: req.user.username});
+            console.log("user specific:\n", Hresults);
+
+            const curr = new Date(Date.now());
+            Hresults.forEach(habit => { 
+                console.log(habit.title, " - " , habit.id);
+            if (habit.nextDate < curr){
+                console.log(habit.title, " has passed limit...resetting progress");
+
+                habit.updateOne({ id: habit.id }, 
+                                    { $set: { progress: 0 } });
+                const d = new Date(habit.nextDate);
+                while(d < curr)
+                {
+                    console.log("type: ", habit.period)
+                    console.log("new Nextdate:", d);
+                    if (habit.period === "Daily")
+                        d.setDate(d.getDate()+1);
+                    
+                    if (habit.period === "Weekly")
+                        d.setDate(d.getDate()+7);
+                    
+                    if (habit.period === "Monthly")
+                        d.setMonth(d.getMonth()+1);
+                    console.log("next date: ", d);
+                    console.log("current date: " , curr);
+                }
+                habit.updateOne({ _id: habit._id }, 
+                    { $set: { nextDate: d } });
+            }
+            if (Date.now() > habit.end)
+            {
+                console.log("Habit ", habit.title, " has passed the end date")
+                habit.deleteOne({ id: habit.id });
+            }
+            });
+
+            console.log("final: \n", Hresults)
+
             res.render( "index", {user: req.user.username, Hresults : Hresults });
         } catch ( error ) {
             console.log( error );
@@ -172,7 +210,7 @@ app.post("/register", urlencodedParser, [
             res.redirect( "/" );
         } else {
             passport.authenticate( "local" )( req, res, () => {
-                res.redirect( "/dashboard" );
+                res.redirect( "/" );
             });
         }
     });
@@ -180,21 +218,35 @@ app.post("/register", urlencodedParser, [
    
 }) 
 
-var i=0;
  app.post("/createHabit", async(req, res)=>{
     console.log(req.body)
-    console.log("added a task: ", req.body.habitName)
-        
+    console.log("adding a task: ", req.body.habitName)
+       
+    console.log("start date: ", req.body.start);
+
+    const d = new Date(req.body.start);
+    console.log(d);
+
+    if (req.body.period === "Daily")
+        d.setDate(d.getDate()+1);
+    
+    if (req.body.period === "Weekly")
+        d.setDate(d.getDate()+7);
+    
+    if (req.body.period === "Monthly")
+        d.setMonth(d.getMonth()+1);
+    console.log("next date: ", d);
+
  const addHabit = new habit ({
-    _id: i,
     title: req.body.habitName,
     user: req.user.username,
     period: req.body.period,
     frequency: req.body.frequency,
     progress: 0,
-    status: null,
+    status: 0,
     category: req.body.habitCatagory,
     startDate: req.body.start,
+    nextDate: d,
     endDate: req.body.end,
     description: req.body.reason
     })
@@ -202,7 +254,6 @@ var i=0;
      addHabit.save().then( ()=>console.log("habit added"));
      //console.log(addHabit);
 
-     i++;
      res.redirect("/dashboard")
  })
 
@@ -236,6 +287,6 @@ app.get("/logout", (req, res) => {
  
  
  app.get('/calendarHabits', async(req, res) => {
-    const habitData= await habit.find();
+    const habitData= await habit.find({user: req.user.username});
     res.send({ data: habitData })
 });

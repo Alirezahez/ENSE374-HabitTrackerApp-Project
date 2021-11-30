@@ -1,94 +1,93 @@
-
-   
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../CSS/homestyle.css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="../CSS/createhabit.css">
-    <title>Kaizen Create Habit</title>
-  </head>
-  <body>
-          <div class="testbox">
+<head>
 
-            <form action="/createHabit" method="POST">
-              <div class="banner">
-                <h1>Create new habit</h1>
-              </div>
-             
-              <div class="item">
-                <p>I want to<span class="required">*</span></p>
-                <div class="name-item">
-                  <input type="text" name="habitName" placeholder="Add a new habit" required/>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-                </div>
-                <div class="item"><P>Catagory</P>
-                  <input type="text" name="habitCatagory" placeholder="e.g health , relationship , routine" required/>
-                </div> 
-              </div>
-              <div>
-                <select name="period">
-                  <option value="Daily">Daily</option>
-                  <option value="Weekly">Weekly</option>
-                  <option value="Monthly">Monthly</option>
-                </select>
-               </div>
-               <div>
-                 <p>Frequency: </p>
-                 <input type="text" name="frequency">
-               </div>
-            <br>
-         
-            
-               <p>Start date</p>
-                <input type="date" name="start" value="Today"/><br>
-                <p>End date</p>
-                 <input type="date" name="end" data-value="7" value="After one week"/>
-        
-            <br>
-            <br>
-            <br>
-             <div>
-               
-                <div class="city-item">
-                  <div class="question">
-                    <p>Difficulty<span class="required">*</span></p>
-                    <div class="question-answer">
-                      <input type="radio" value="Low" name="difficulty"/>
-                      <label for="low">Low</label>
-                      <input type="radio" value="Medium" name="difficulty"/>
-                      <label for="Medium">Medium</label>
-                      <input type="radio" value="High" name="difficulty"/>
-                      <label for="High">High</label><br>
-                    </div>
-                  </div>
-                  <br> <br>
-                  <p>Why am I making this habit?<span class="required">*</span></p>
-                  <input type="text" name="reason" placeholder="Describ here!" required/>
-                </div>
-              </div>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../CSS/homestyle.css" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="../CSS/createhabit.css">
+  <title>Kaizen Create Habit</title>
+</head>
 
-              <div class="btn-block">
-                <input type="submit" value="ADD HABIT"/>
-                //<button type="submit" href="/">ADD HABIT</button>
-              </div>
-            </form>
+<body>
+  <div class="testbox">
+
+    <form action="/createHabit" method="POST">
+      <div class="banner">
+        <h1>Create new habit</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-12">
+          <div class="item">
+            <label>I want to<span class="required"></span></label>
+            <div class="name-item">
+              <input type="text" name="habitName" placeholder="Add a new habit" required />
+
+            </div>
+            <div class="item">
+              <P>Category</P>
+              <input type="text" name="habitCatagory" placeholder="e.g health , relationship , routine" required />
+            </div>
           </div>
-        
-         
-         
+          <div>
+            <select name="period">
+              <option value="Daily">Daily</option>
+              <option value="Weekly">Weekly</option>
+              <option value="Monthly">Monthly</option>
+            </select>
+          </div>
+          <div>
+            <label>Frequency: </label>
+            <input type="text" name="frequency">
+          </div>
+          <br>
+          <label>Start date</label>
+          <input type="date" name="start" value="Today" /><br>
+          <label>End date</label>
+          <input type="date" name="end" data-value="7" value="After one week" />
+        </div>
+
+
+        <div class="col-md-6 col-12">
+
+          <label>Why am I making this habit?</label>
+          <input type="text" name="reason" placeholder="Describe here!" required />
+          <br>
+          <div class="city-item">
+            <div class="question">
+              <label>Difficulty</label>
+              <div class="question-answer">
+                <input type="radio" value="Low" name="difficulty" />
+                <label for="low">Low</label>
+                <input type="radio" value="Medium" name="difficulty" />
+                <label for="Medium">Medium</label>
+                <input type="radio" value="High" name="difficulty" />
+                <label for="High">High</label><br>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-block">
+        <input type="submit" value="ADD HABIT" />
+      </div>
+    </form>
+  </div>
+
+
+
 
 </body>
+
 </html>

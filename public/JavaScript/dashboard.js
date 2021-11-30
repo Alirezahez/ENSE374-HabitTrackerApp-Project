@@ -38,8 +38,11 @@ $("document").ready(() => {
 
         var hTitle = habit.title;
         var hId = habit._id;
-        var hStartDate = habit.startDate;
-        var hEndDate = habit.endDate;
+        var hStartDate = habit.startDate.split('T')[0];
+        var hEndDate = habit.endDate.split('T')[0];
+
+        console.log("StartDate: ", hStartDate);
+        console.log("EndDate: " , hEndDate);
         //add: if statement for monthly, weekly, daily
         habitArray.push({
           id: hId,
@@ -48,6 +51,7 @@ $("document").ready(() => {
           end: hEndDate
           //groupId: '999', //groupId is for a repeated item (weekly, monthly, etc)
         })
+
         //create the calendar using the list of habit objects
         draw(habitArray);
       })
